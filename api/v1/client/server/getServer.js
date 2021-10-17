@@ -1,8 +1,8 @@
-const { MongoClient, ObjectId } = require("mongodb");
+const {ObjectId } = require("mongodb");
 
-const client = new MongoClient(process.env.DATABASE_CONNECTION);
+const client = require("../../../../lib/mongodb");
+
 async function getServer(req, res) {
-  await client.connect();
   const collection = client.db("Ararat").collection("servers");
   collection
     .findOne({
