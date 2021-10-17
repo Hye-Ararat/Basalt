@@ -11,7 +11,7 @@ async function getServer(req, res) {
       _id: ObjectId(req.params.server),
     })
     .then((server_data) => {
-      res.send(server_data);
+      res.json(server_data);
     });
 }
 
