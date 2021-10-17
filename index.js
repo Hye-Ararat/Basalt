@@ -24,6 +24,9 @@ httpsServer.on("error", (e) => {
 
 httpsServer.listen(process.env.LISTEN_PORT, process.env.LISTEN_ADDRESS);
 
-httpsServer.on('listening', () => {
-  console.log('Server Running on', process.env.LISTEN_ADDRESS + ":" + process.env.LISTEN_PORT)
-})
+httpsServer.on("listening", () => {
+  console.log(
+    "Server Running on",
+    process.env.LISTEN_ADDRESS + ":" + process.env.LISTEN_PORT
+  );
+});
