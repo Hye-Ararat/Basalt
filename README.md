@@ -8,7 +8,3 @@ Backend made for [Ararat](https://github.com/Hye-Organization/Ararat)
 Found a bug in Basalt? You can report it by [creating a new issue](https://github.com/Hye-Organization/Basalt/issues/new).
 
 Need assistance or want to ask a question? You can [join our Discord server](https://discord.gg/37dWqQZAkr).
-
-## 🤝 Contributors
-- [WolfoGaming](https://github.com/Wolfo-Gaming) - ***Main Developer***
-- [HyeDev](https://github.com/Hye-Dev) - ***Main Developer***
