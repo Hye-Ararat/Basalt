@@ -8,8 +8,8 @@ async function getServer(req, res) {
     .findOne({
       _id: ObjectId(req.params.server),
     })
-    .then((data) => {
-      res.send(data);
+    .then((server_data) => {
+      res.send(server_data);
     });
 }
 
