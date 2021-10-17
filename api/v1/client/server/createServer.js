@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const { ObjectId } = require("mongodb");
 
 const client = require("../../../../lib/mongodb");
@@ -89,6 +91,7 @@ async function createServer(req, res) {
       if (typeof(body.magma_cube.image_group) != "string") return res.json({status: "error", data: "The image group is invalid"});
       if (!body.magma_cube.image_index) return res.json({status: "error", data: "For Docker, an image index is required in the magma cube configuration"});
       if (typeof(body.magma_cube.image_index) != "number") return res.json({status: "error", data: "The image index is invalid"});
+      
       config = {
         name: body.name,
         node: body.node,
@@ -129,15 +132,26 @@ async function createServer(req, res) {
   const node_collection = client
     .db(`${process.env.DATABASE_NAME}`)
     .collection("nodes");
-  const node_document = await node_collection.findOne({
-    _id: ObjectId(config),
+  const node_data = await node_collection.findOne({
+    _id: ObjectId(config.node),
   });
   const server_collection = client
     .db(`${process.env.DATABASE_NAME}`)
     .collection("servers");
   try {
-    await server_collection.insertOne(config);
-  } catch (error) {}
+    server_document = await server_collection.insertOne(config);
+  } catch (error) {
+    return res.json({status: "error", data: "An error occured while writing to the database"})
+  }
+  try {
+    await axios.post(`https://${node_data.address.hostname}:${node_data.address.port}/api/v1/servers`)
+  } catch (error) {
+    return res.json({status: "error", data: "An error occured while communicating with Hye Lava to create the server"})
+    server_collection.deleteOne({
+      _id: server_document.insertedId
+    })
+  }
+  res.json({status: "success", data: "The Server Installation Has Started"})
 }
 
 module.exports = createServer;
