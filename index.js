@@ -5,7 +5,11 @@ const fs = require("fs");
 const router = express.Router();
 require("dotenv").config();
 
+const apiv1 = require("./api/v1/v1");
+
 app.use(router);
+
+router.use("/api/v1", apiv1);
 
 var httpsServer = https.createServer(
   {
