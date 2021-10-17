@@ -146,10 +146,10 @@ async function createServer(req, res) {
   try {
     await axios.post(`https://${node_data.address.hostname}:${node_data.address.port}/api/v1/servers`)
   } catch (error) {
-    return res.json({status: "error", data: "An error occured while communicating with Hye Lava to create the server"})
-    server_collection.deleteOne({
+    await server_collection.deleteOne({
       _id: server_document.insertedId
     })
+    return res.json({status: "error", data: "An error occured while communicating with Hye Lava to create the server"})
   }
   res.json({status: "success", data: "The Server Installation Has Started"})
 }
