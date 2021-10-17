@@ -6,13 +6,10 @@ async function getServer(req, res) {
   const collection = client
     .db(`${process.env.DATABASE_NAME}`)
     .collection("servers");
-  collection
-    .findOne({
-      _id: ObjectId(req.params.server),
-    })
-    .then((server_data) => {
-      res.json(server_data);
-    });
+  const server_data = await collection.findOne({
+    _id: ObjectId(req.params.server),
+  });
+  res.send(server_data);
 }
 
 module.exports = getServer;
