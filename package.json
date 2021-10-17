@@ -1,0 +1,23 @@
+{
+  "name": "basalt",
+  "version": "1.0.0",
+  "description": "The Ararat Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hye-Organization/Basalt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hye-Organization/Basalt/issues"
+  },
+  "homepage": "https://github.com/Hye-Organization/Basalt#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
