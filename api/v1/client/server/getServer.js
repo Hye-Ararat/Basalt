@@ -5,12 +5,11 @@ async function getServer(req, res) {
   await client.connect();
   const collection = client.db("Ararat").collection("servers");
   collection
-    .find({
+    .findOne({
       _id: ObjectId(req.params.server),
     })
-    .toArray()
     .then((data) => {
-      res.send(data[0]);
+      res.send(data);
     });
 }
 
