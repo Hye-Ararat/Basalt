@@ -1,5 +1,5 @@
 # Basalt
-Backend made for [Ararat](https://github.com/Hye-Organization/Ararat)
+A REST interface for automating and managing Docker, N-VPS, and KVM instances.
 
 [![Discord](https://discordapp.com/api/guilds/777670627816898590/widget.png?style=shield)](https://discord.gg/37dWqQZAkr)  ![GitHub stars](https://img.shields.io/github/stars/Hye-Organization/Basalt?style=social)  ![GitHub watchers](https://img.shields.io/github/watchers/Hye-Organization/Basalt?style=social)
 
