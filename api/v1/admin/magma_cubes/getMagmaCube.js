@@ -3,7 +3,11 @@ const { ObjectId } = require("mongodb");
 const client = require("../../../../lib/mongodb");
 
 async function getMagmaCube(req, res) {
-  if (typeof(req.params.magma_cube) != "string" || Buffer.byteLength(req.params.magma_cube, 'utf8') < 12) return res.send({status: "error", data: "Invalid Magma Cube"});
+  if (
+    typeof req.params.magma_cube != "string" ||
+    Buffer.byteLength(req.params.magma_cube, "utf8") < 12
+  )
+    return res.send({ status: "error", data: "Invalid Magma Cube" });
   const collection = client
     .db(`${process.env.DATABASE_NAME}`)
     .collection("magma_cubes");
