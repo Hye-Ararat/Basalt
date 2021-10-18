@@ -9,7 +9,9 @@ async function getServer(req, res) {
   const server_data = await collection.findOne({
     _id: ObjectId(req.params.server),
   });
-  res.send(server_data);
+  server_data == null
+    ? res.json({ status: "error", data: "Server does not exist" })
+    : res.json({ status: "success", data: server_data });
 }
 
 module.exports = getServer;
