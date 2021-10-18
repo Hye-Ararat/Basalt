@@ -11,10 +11,22 @@ app.use(router);
 
 router.use("/api/v1", apiv1);
 
-var httpsServer = https.createServer(
+try {
+  var key = fs.readFileSync(process.env.SSL_KEY);
+} catch (error) {
+  console.log("Error while reading SSL Key")
+  process.exit(0);
+}
+try {
+  var cert = fs.readFileSync(process.env.SSL_CERT);
+} catch (error) {
+  console.log("Error while reading SSL Cert");
+  process.exit(0);
+}
+let httpsServer = https.createServer(
   {
-    key: fs.readFileSync(process.env.SSL_KEY),
-    cert: fs.readFileSync(process.env.SSL_CERT),
+    key: key,
+    cert: cert,
   },
   app
 );
