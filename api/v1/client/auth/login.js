@@ -41,16 +41,10 @@ async function login(req, res) {
 		preferences: user_data.preferences,
 		phone_number: user_data.phone_number,
 	};
-	let access_token = jwt.sign(
-		{
-			user,
-		},
-		process.env.ACCESS_TOKEN_SECRET,
-		{
-			algorithm: "HS256",
-			expiresIn: "15m",
-		}
-	);
+	let access_token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+		algorithm: "HS256",
+		expiresIn: "15m",
+	});
 	res.json({
 		status: "success",
 		data: {

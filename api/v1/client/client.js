@@ -7,6 +7,7 @@ const serverAPI = require("./servers/serverAPI");
 //Auth Routes
 router.post("/auth/login", authAPI.login);
 router.post("/auth/create", authAPI.create);
+router.post("/auth/refreshAccessToken", authAPI.refreshAccessToken);
 
 //Server Routes
 router.get("/servers/:server", serverAPI.getServer);

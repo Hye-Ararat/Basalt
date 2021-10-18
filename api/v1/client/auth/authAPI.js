@@ -1,3 +1,4 @@
 const login = require("./login.js");
 const create = require("./create.js")
-module.exports = { login, create }
+const refreshAccessToken = require("./refreshAccessToken");
+module.exports = { login, create, refreshAccessToken }
