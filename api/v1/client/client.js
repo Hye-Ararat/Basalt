@@ -4,6 +4,6 @@ const router = express.Router();
 const serverAPI = require("./servers/serverAPI");
 
 //Server Routes
-router.get("/server/:server", serverAPI.getServer);
+router.get("/servers/:server", serverAPI.getServer);
 
 module.exports = router;
