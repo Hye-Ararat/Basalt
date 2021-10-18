@@ -3,8 +3,8 @@ const app = express();
 const https = require("https");
 const fs = require("fs");
 const router = express.Router();
+app.use(express.json());
 require("dotenv").config();
-
 const apiv1 = require("./api/v1/v1");
 
 app.use(router);
