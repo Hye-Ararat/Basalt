@@ -13,10 +13,11 @@ router.use("/client", function(req, res, next) {
         //Is API key
     } else {
         try {
-            jwt.verify(authorization, process.env.ACCESS_TOKEN_SECRET)
+            var user_data = jwt.verify(authorization, process.env.ACCESS_TOKEN_SECRET)
         } catch (error) {
             return res.json({status: "error", data: "Authorization is incorrect"});
         }
+        res.locals.user_data = user_data;
         return next();
     }
 }, client);
