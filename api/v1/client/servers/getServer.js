@@ -13,6 +13,7 @@ async function getServer(req, res) {
     .collection("servers");
   const server_data = await collection.findOne({
     _id: ObjectId(req.params.server),
+    [`users.${res.locals.user_data.id}`]: { $exists: true },
   });
   server_data == null
     ? res.json({ status: "error", data: "Server does not exist" })
