@@ -16,7 +16,7 @@ async function getNode(req, res) {
 		[`users.${req.locals.user_data.id}`]: { $exists: true },
 	});
 	if (server == null)
-		return res.send({ status: "error", data: "Node not found" });
+		return res.send({ status: "error", data: "Node does not exist" });
 	const collection = client
 		.db(`${process.env.DATABASE_NAME}`)
 		.collection("nodes");
