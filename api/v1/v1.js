@@ -21,5 +21,20 @@ router.use("/client", function(req, res, next) {
         return next();
     }
 }, client);
-router.use("/admin", admin);
+router.use("/admin", function(req, res, next) {
+    if (!req.headers["authorization"]) return res.json({status: "error", data: "No authorization header sent"});
+    const authorization = req.headers["authorization"].split(" ")[1];
+    if (authorization.substring(0, authorization.indexOf(":"))) {
+        //Is API key
+    } else {
+        try {
+            var user_data = jwt.verify(authorization, process.env.ACCESS_TOKEN_SECRET)
+        } catch (error) {
+            return res.json({status: "error", data: "Authorization is incorrect"});
+        }
+        if (user_data.admin != true) return res.json({status: "error", data: "Authorization is incorrect"});
+        res.locals.user_data = user_data;
+        return next();
+    }
+}, admin);
 module.exports = router;
