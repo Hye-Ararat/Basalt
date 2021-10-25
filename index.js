@@ -31,6 +31,10 @@ if (cluster.isMaster || cluster.isPrimary) {
 	
 	app.use(router);
 	
+	app.get("/", (req, res) => {
+		res.send(`Hye Basalt Instance ${process.pid}`);
+	});
+
 	router.use("/api/v1", apiv1);
 	
 	try {
