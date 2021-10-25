@@ -13,7 +13,7 @@ async function getNode(req, res) {
 		.collection("servers");
 	const server = await server_collection.findOne({
 		node: req.params.node,
-		[`users.${req.locals.user_data.id}`]: { $exists: true },
+		[`users.${res.locals.user_data.id}`]: { $exists: true },
 	});
 	if (server == null)
 		return res.send({ status: "error", data: "Node does not exist" });
