@@ -10,6 +10,19 @@ async function create(req, res) {
 	const users_colletion = client
 		.db(process.env.DATABASE_NAME)
 		.collection("users");
+    if (!req.body.username){
+		return res.json({ status: "error", data: "Username field is required" });
+	}
+	if (!req.body.first_name){
+		return res.json({ status: "error", data: "First Name field is required" });
+	}
+	if (!req.body.last_name){
+		return res.json({ status: "error", data: "Last Name field is required" });
+	}
+	if (!req.body.email){
+		return res.json({ status: "error", data: "Email field is required" });
+	}
+
 	if (!req.body.password)
 		return res.json({ status: "error", data: "Password field is required" });
 	try {
@@ -22,14 +35,14 @@ async function create(req, res) {
 		});
 	}
 	users_colletion.insertOne({
-		username: "wolfogaming",
-		first_name: "Wolfo",
-		last_name: "Gaming",
-		admin: true,
-		email: "klokko06@gmail.com",
+		username: req.body.username,
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+		admin: req.body.admin ? req.body.admin : false,
+		email: req.body.email,
 		preferences: {},
 		password: hashed_password,
-		phone_number: null,
+		phone_number: req.body.phone_number ? req.body.phone_number : null,
 	});
 	res.json({ status: "success", message: "Created user!" });
 }
