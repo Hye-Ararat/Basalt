@@ -2,6 +2,7 @@ const { ObjectId } = require("mongodb");
 
 const client = require("../../../../lib/mongodb");
 
+//shouldnt there be authentication on this route?
 async function getMagmaCube(req, res) {
   if (
     typeof req.params.magma_cube != "string" ||
